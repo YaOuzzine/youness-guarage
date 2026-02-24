@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Parking Plans &amp; Pricing - Youness Garage</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "charcoal": "#1a1a1a",
+                        "charcoal-dark": "#121212",
+                        "electric-teal": "#00f0ff",
+                        "fresh-mint": "#66ffcc",
+                        "glass-dark": "rgba(20, 20, 20, 0.6)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'glow-teal': '0 0 15px rgba(0, 240, 255, 0.3)',
+                        'glow-mint': '0 0 25px rgba(102, 255, 204, 0.4)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(30, 30, 30, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-vip {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(102, 255, 204, 0.3);
+            box-shadow: 0 0 40px rgba(102, 255, 204, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-charcoal font-display text-white antialiased overflow-x-hidden selection:bg-electric-teal selection:text-black">
+<header class="absolute top-0 z-50 w-full bg-transparent border-b border-white/10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-10 h-10 rounded-lg bg-electric-teal shadow-glow-teal text-black">
+<span class="material-symbols-outlined text-2xl font-bold">local_parking</span>
+</div>
+<span class="font-bold text-2xl tracking-tight text-white">Youness Garage</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-300 hover:text-electric-teal transition-colors" href="#">Locations</a>
+<a class="text-sm font-bold text-electric-teal hover:text-electric-teal transition-colors" href="#">Pricing</a>
+<a class="text-sm font-medium text-slate-300 hover:text-electric-teal transition-colors" href="#">Support</a>
+<button class="px-5 py-2.5 text-sm font-bold text-black bg-fresh-mint hover:bg-white hover:shadow-glow-mint rounded-lg transition-all duration-300">Log In</button>
+</nav>
+<button class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10 text-white transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="relative min-h-screen flex flex-col pt-20">
+<div class="fixed inset-0 z-0 bg-charcoal pointer-events-none">
+<div class="absolute top-0 left-1/2 w-[800px] h-[800px] bg-electric-teal/5 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-fresh-mint/5 rounded-full blur-[100px] translate-y-1/3 translate-x-1/4"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col pt-16 pb-20">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electric-teal/10 border border-electric-teal/20 text-electric-teal text-xs font-bold uppercase tracking-wider mb-6 shadow-glow-teal">
+                    Transparent Pricing
+                </div>
+<h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight mb-6">
+                    Choose Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-fresh-mint to-electric-teal">Parking Plan</span>
+</h1>
+<p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                    Flexible options tailored for short trips, business travel, and extended vacations. Secure your spot and enjoy premium perks.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 items-start">
+<div class="glass-card rounded-3xl p-8 relative group hover:bg-white/5 transition-all duration-300">
+<div class="mb-6">
+<h3 class="text-xl font-bold text-white mb-2">Standard</h3>
+<p class="text-slate-400 text-sm h-10">Perfect for short weekend trips and drop-offs.</p>
+</div>
+<div class="mb-8">
+<span class="text-4xl font-black text-white">$15</span>
+<span class="text-slate-500 font-medium">/ day</span>
+</div>
+<button class="w-full py-3 px-4 rounded-xl border border-white/20 text-white font-bold hover:bg-white hover:text-black transition-all duration-300 mb-8">
+                        Select Standard
+                    </button>
+<ul class="space-y-4 text-sm text-slate-300">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">check_circle</span>
+<span>Covered Garage Parking</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">check_circle</span>
+<span>24/7 Security Surveillance</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">check_circle</span>
+<span>Standard Shuttle Service (Every 15m)</span>
+</li>
+<li class="flex items-start gap-3 opacity-40">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">cancel</span>
+<span>Car Wash Included</span>
+</li>
+<li class="flex items-start gap-3 opacity-40">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">cancel</span>
+<span>Priority Boarding</span>
+</li>
+</ul>
+</div>
+<div class="glass-card-vip rounded-3xl p-8 relative transform md:-translate-y-4 shadow-glow-mint">
+<div class="absolute top-0 right-0 bg-fresh-mint text-black text-xs font-black uppercase px-3 py-1 rounded-bl-xl rounded-tr-2xl">
+                        Most Popular
+                    </div>
+<div class="mb-6">
+<h3 class="text-xl font-bold text-fresh-mint mb-2 flex items-center gap-2">
+                            VIP
+                            <span class="material-symbols-outlined text-lg">diamond</span>
+</h3>
+<p class="text-slate-300 text-sm h-10">The ultimate convenience for business travelers.</p>
+</div>
+<div class="mb-8">
+<span class="text-4xl font-black text-white">$35</span>
+<span class="text-slate-400 font-medium">/ day</span>
+</div>
+<button class="w-full py-3 px-4 rounded-xl bg-fresh-mint text-black font-bold hover:shadow-[0_0_20px_rgba(102,255,204,0.4)] transition-all duration-300 mb-8">
+                        Select VIP
+                    </button>
+<ul class="space-y-4 text-sm text-white font-medium">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">verified</span>
+<span>Premium Indoor Reserved Spot</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">verified</span>
+<span>Free Express Car Wash</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">verified</span>
+<span>Priority Private Shuttle</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">verified</span>
+<span>EV Charging Included</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">verified</span>
+<span>Curbside Valet Assist</span>
+</li>
+</ul>
+</div>
+<div class="glass-card rounded-3xl p-8 relative group hover:bg-white/5 transition-all duration-300">
+<div class="mb-6">
+<h3 class="text-xl font-bold text-white mb-2">Premium</h3>
+<p class="text-slate-400 text-sm h-10">Enhanced comfort for extended stays.</p>
+</div>
+<div class="mb-8">
+<span class="text-4xl font-black text-white">$25</span>
+<span class="text-slate-500 font-medium">/ day</span>
+</div>
+<button class="w-full py-3 px-4 rounded-xl border border-white/20 text-white font-bold hover:bg-white hover:text-black transition-all duration-300 mb-8">
+                        Select Premium
+                    </button>
+<ul class="space-y-4 text-sm text-slate-300">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">check_circle</span>
+<span>Wide Indoor Parking Spot</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">check_circle</span>
+<span>Exterior Car Rinse</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">check_circle</span>
+<span>Express Shuttle Access</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-fresh-mint text-[20px]">check_circle</span>
+<span>Luggage Assistance</span>
+</li>
+<li class="flex items-start gap-3 opacity-40">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">cancel</span>
+<span>Priority Private Shuttle</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mb-24 relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-charcoal-dark to-charcoal shadow-2xl">
+<div class="absolute top-0 right-0 w-64 h-64 bg-electric-teal/10 rounded-full blur-[80px] translate-x-1/2 -translate-y-1/2"></div>
+<div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center p-8 lg:p-12">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-electric-teal text-3xl">flight_takeoff</span>
+<span class="text-electric-teal font-bold tracking-wider uppercase text-sm">Loyalty Program</span>
+</div>
+<h2 class="text-3xl lg:text-4xl font-black text-white mb-6">Join the <span class="text-white border-b-4 border-electric-teal">Frequent Flyer</span> Club</h2>
+<p class="text-slate-400 mb-8 leading-relaxed">
+                            Earn points with every reservation. For every $100 spent, you receive 100 points redeemable for free parking days, car detailing, or partner airline miles.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<div class="bg-white/5 rounded-xl p-4 border border-white/10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-fresh-mint/20 text-fresh-mint flex items-center justify-center">
+<span class="material-symbols-outlined">stars</span>
+</div>
+<div>
+<div class="text-white font-bold">100 Bonus</div>
+<div class="text-xs text-slate-500">Upon Signup</div>
+</div>
+</div>
+<div class="bg-white/5 rounded-xl p-4 border border-white/10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-electric-teal/20 text-electric-teal flex items-center justify-center">
+<span class="material-symbols-outlined">redeem</span>
+</div>
+<div>
+<div class="text-white font-bold">Free Days</div>
+<div class="text-xs text-slate-500">Redeem Anytime</div>
+</div>
+</div>
+</div>
+</div>
+<div class="relative h-full min-h-[300px] rounded-2xl overflow-hidden group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQqb56YPCF2gLGAGyh4GTe2rvurtsjxBQmJ9LdYY3ywW7HV6zXjNhlRyGRCvnwcImnL_0mjJQyTYMlNV3WKUizIQxACfKf1s0H19uf-6Kc3hbPiszp8ghVDIDME97hKsGTEGmWvOj3zvIB41J5l_sgtcvEW62nq3jKK0cbVmOudFJdMuM9xoB9qGOkAjslOAtGDLfROvF8vLn6T7ILdxgI6DRy_5ICBb7oB4-G5YuZmNXAybkeNnInofMj08aam8xeNqFR5vSC69c'); filter: grayscale(100%) contrast(120%) brightness(60%);"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="glass-card p-6 rounded-xl border border-white/10">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-xs text-slate-400 uppercase font-bold mb-1">Current Status</p>
+<p class="text-xl font-bold text-white">Platinum Member</p>
+</div>
+<div class="text-right">
+<p class="text-3xl font-black text-electric-teal">2,450</p>
+<p class="text-xs text-slate-400 font-medium">Points Balance</p>
+</div>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5 mt-4">
+<div class="bg-gradient-to-r from-fresh-mint to-electric-teal h-1.5 rounded-full" style="width: 75%"></div>
+</div>
+<p class="text-xs text-slate-500 mt-2 text-right">550 pts to next reward</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-3xl mx-auto w-full">
+<h2 class="text-3xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<div class="glass-card rounded-xl p-6 hover:border-electric-teal/30 transition-colors cursor-pointer group">
+<summary class="flex justify-between items-center font-bold text-white list-none">
+<span>Can I change my reservation after booking?</span>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-electric-teal transition-colors">add_circle</span>
+</summary>
+<p class="text-slate-400 mt-3 text-sm leading-relaxed">Yes, you can modify your booking up to 1 hour before your scheduled arrival time free of charge through our manage booking portal.</p>
+</div>
+<div class="glass-card rounded-xl p-6 hover:border-electric-teal/30 transition-colors cursor-pointer group">
+<summary class="flex justify-between items-center font-bold text-white list-none">
+<span>Is the shuttle service running 24/7?</span>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-electric-teal transition-colors">add_circle</span>
+</summary>
+<p class="text-slate-400 mt-3 text-sm leading-relaxed">Absolutely. Our shuttles run continuously every 15 minutes for Standard/Premium plans, and on-demand for VIP plan holders, 24 hours a day, 7 days a week.</p>
+</div>
+<div class="glass-card rounded-xl p-6 hover:border-electric-teal/30 transition-colors cursor-pointer group">
+<summary class="flex justify-between items-center font-bold text-white list-none">
+<span>Do you offer long-term parking discounts?</span>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-electric-teal transition-colors">add_circle</span>
+</summary>
+<p class="text-slate-400 mt-3 text-sm leading-relaxed">Yes! For stays longer than 7 days, we automatically apply a 15% discount to the daily rate. Monthly passes are also available for frequent flyers.</p>
+</div>
+<div class="glass-card rounded-xl p-6 hover:border-electric-teal/30 transition-colors cursor-pointer group">
+<summary class="flex justify-between items-center font-bold text-white list-none">
+<span>Is my vehicle insured while parked?</span>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-electric-teal transition-colors">add_circle</span>
+</summary>
+<p class="text-slate-400 mt-3 text-sm leading-relaxed">Youness Garage maintains comprehensive liability insurance. However, we recommend removing valuables from your vehicle as personal property is not covered.</p>
+</div>
+</div>
+</div>
+</div>
+<footer class="bg-charcoal-dark border-t border-white/10 py-8 relative z-10 mt-auto">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 text-sm">© 2024 Youness Garage. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-white text-sm transition-colors" href="#">Privacy</a>
+<a class="text-slate-500 hover:text-white text-sm transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</main>
+
+</body></html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>History Dashboard - ParkPremium</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "charcoal": "#1a1a1a",
+                        "charcoal-dark": "#121212",
+                        "electric-teal": "#00f0ff",
+                        "fresh-mint": "#66ffcc",
+                        "glass-dark": "rgba(20, 20, 20, 0.6)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'glow-teal': '0 0 25px rgba(0, 240, 255, 0.2)',
+                        'glow-mint': '0 0 15px rgba(102, 255, 204, 0.4)',
+                        'glow-card': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-sidebar {
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-table-header {
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-table-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.2); 
+        }
+    </style>
+</head>
+<body class="bg-charcoal font-display text-white antialiased h-screen flex overflow-hidden selection:bg-electric-teal selection:text-black">
+<div class="fixed inset-0 z-0 bg-charcoal pointer-events-none overflow-hidden">
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-electric-teal/5 rounded-full blur-[150px] -translate-y-1/3 translate-x-1/4"></div>
+<div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-fresh-mint/5 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/4"></div>
+</div>
+<aside class="relative z-20 w-24 lg:w-64 glass-sidebar h-full flex flex-col justify-between p-6 hidden md:flex shrink-0 transition-all duration-300">
+<div>
+<div class="flex items-center gap-3 mb-10 px-2">
+<div class="w-8 h-8 bg-gradient-to-tr from-electric-teal to-fresh-mint rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-black font-bold text-lg">local_parking</span>
+</div>
+<span class="text-lg font-bold tracking-wide hidden lg:block">ParkPremium</span>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium hidden lg:block">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 bg-white/10 text-white rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-electric-teal">history</span>
+<span class="font-medium hidden lg:block">History</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="font-medium hidden lg:block">Payments</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium hidden lg:block">Settings</span>
+</a>
+</nav>
+</div>
+<div class="space-y-2">
+<button class="w-full flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all">
+<span class="material-symbols-outlined">help</span>
+<span class="font-medium hidden lg:block">Support</span>
+</button>
+<button class="w-full flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-medium hidden lg:block">Log Out</span>
+</button>
+</div>
+</aside>
+<main class="relative z-10 flex-grow h-full overflow-auto flex flex-col">
+<header class="md:hidden flex items-center justify-between p-4 glass-card border-b border-white/5 sticky top-0 z-30">
+<button class="text-white"><span class="material-symbols-outlined">menu</span></button>
+<h1 class="text-lg font-bold tracking-wide">History</h1>
+<div class="w-6"></div>
+</header>
+<div class="p-6 lg:p-10 w-full max-w-7xl mx-auto h-full flex flex-col">
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-6">
+<div>
+<h1 class="text-3xl font-black tracking-tight text-white mb-1">Session History</h1>
+<p class="text-slate-400">View and manage your past parking transactions.</p>
+</div>
+<div class="flex items-center gap-4 bg-white/5 p-1 rounded-xl border border-white/5 self-start md:self-auto">
+<button class="px-4 py-2 rounded-lg bg-electric-teal text-charcoal font-bold text-sm shadow-glow-teal transition-all hover:bg-white">Last 30 days</button>
+<button class="px-4 py-2 rounded-lg text-slate-400 font-medium text-sm hover:text-white hover:bg-white/5 transition-all">Last 6 months</button>
+<button class="px-4 py-2 rounded-lg text-slate-400 font-medium text-sm hover:text-white hover:bg-white/5 transition-all flex items-center gap-2">
+<span>Custom range</span>
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+</button>
+</div>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden border border-white/10 flex-grow flex flex-col shadow-glow-card">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="glass-table-header text-slate-400 text-xs uppercase tracking-wider font-bold">
+<th class="p-6">Date</th>
+<th class="p-6">Location</th>
+<th class="p-6">Duration</th>
+<th class="p-6">Vehicle</th>
+<th class="p-6 text-right">Total Cost</th>
+<th class="p-6 text-center">Receipt</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5 text-sm">
+<tr class="glass-table-row transition-colors">
+<td class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-xl">event</span>
+</div>
+<div>
+<div class="font-bold text-white">Oct 24, 2023</div>
+<div class="text-slate-500 text-xs">08:30 AM - 05:45 PM</div>
+</div>
+</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-white">Terminal 1 - Zone B</div>
+<div class="text-slate-500 text-xs">Level 2, Spot 42</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">9h 15m</div>
+<div class="inline-flex items-center gap-1 text-fresh-mint text-xs mt-1">
+<span class="material-symbols-outlined text-[10px]">bolt</span>
+                                            Charging included
+                                        </div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">SEAT Ateca FR</div>
+<div class="text-slate-500 text-xs">ABC-1234</div>
+</td>
+<td class="p-6 text-right">
+<div class="font-bold text-white text-lg">$48.50</div>
+<div class="text-slate-500 text-xs">Paid via Visa ••4242</div>
+</td>
+<td class="p-6 text-center">
+<button class="group p-2 rounded-lg hover:bg-electric-teal/10 text-slate-400 hover:text-electric-teal transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="glass-table-row transition-colors">
+<td class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-xl">event</span>
+</div>
+<div>
+<div class="font-bold text-white">Oct 18, 2023</div>
+<div class="text-slate-500 text-xs">02:15 PM - 06:30 PM</div>
+</div>
+</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-white">Terminal 2 - Zone A</div>
+<div class="text-slate-500 text-xs">Level 1, Spot 15</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">4h 15m</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">Tesla Model 3</div>
+<div class="text-slate-500 text-xs">XYZ-9876</div>
+</td>
+<td class="p-6 text-right">
+<div class="font-bold text-white text-lg">$22.00</div>
+<div class="text-slate-500 text-xs">Paid via Wallet</div>
+</td>
+<td class="p-6 text-center">
+<button class="group p-2 rounded-lg hover:bg-electric-teal/10 text-slate-400 hover:text-electric-teal transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="glass-table-row transition-colors">
+<td class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-xl">event</span>
+</div>
+<div>
+<div class="font-bold text-white">Oct 12, 2023</div>
+<div class="text-slate-500 text-xs">09:00 AM - 11:00 AM</div>
+</div>
+</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-white">Short Stay - P1</div>
+<div class="text-slate-500 text-xs">Ground Floor</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">2h 00m</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">SEAT Ateca FR</div>
+<div class="text-slate-500 text-xs">ABC-1234</div>
+</td>
+<td class="p-6 text-right">
+<div class="font-bold text-white text-lg">$14.50</div>
+<div class="text-slate-500 text-xs">Paid via Apple Pay</div>
+</td>
+<td class="p-6 text-center">
+<button class="group p-2 rounded-lg hover:bg-electric-teal/10 text-slate-400 hover:text-electric-teal transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="glass-table-row transition-colors">
+<td class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-xl">event</span>
+</div>
+<div>
+<div class="font-bold text-white">Sep 28, 2023</div>
+<div class="text-slate-500 text-xs">06:00 AM - 08:30 PM</div>
+</div>
+</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-white">Long Stay - Zone C</div>
+<div class="text-slate-500 text-xs">Outdoor Lot</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">14h 30m</div>
+<div class="inline-flex items-center gap-1 text-electric-teal text-xs mt-1">
+<span class="material-symbols-outlined text-[10px]">local_car_wash</span>
+                                            Premium Wash
+                                        </div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">SEAT Ateca FR</div>
+<div class="text-slate-500 text-xs">ABC-1234</div>
+</td>
+<td class="p-6 text-right">
+<div class="font-bold text-white text-lg">$65.00</div>
+<div class="text-slate-500 text-xs">Paid via Visa ••4242</div>
+</td>
+<td class="p-6 text-center">
+<button class="group p-2 rounded-lg hover:bg-electric-teal/10 text-slate-400 hover:text-electric-teal transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+<tr class="glass-table-row transition-colors">
+<td class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined text-xl">event</span>
+</div>
+<div>
+<div class="font-bold text-white">Sep 15, 2023</div>
+<div class="text-slate-500 text-xs">10:30 AM - 12:45 PM</div>
+</div>
+</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-white">Terminal 1 - Zone B</div>
+<div class="text-slate-500 text-xs">Level 3, Spot 11</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">2h 15m</div>
+</td>
+<td class="p-6">
+<div class="font-medium text-slate-300">Tesla Model 3</div>
+<div class="text-slate-500 text-xs">XYZ-9876</div>
+</td>
+<td class="p-6 text-right">
+<div class="font-bold text-white text-lg">$16.00</div>
+<div class="text-slate-500 text-xs">Paid via Wallet</div>
+</td>
+<td class="p-6 text-center">
+<button class="group p-2 rounded-lg hover:bg-electric-teal/10 text-slate-400 hover:text-electric-teal transition-all" title="Download Receipt">
+<span class="material-symbols-outlined">download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 border-t border-white/5 flex items-center justify-between bg-white/[0.02]">
+<p class="text-slate-400 text-sm">Showing <span class="text-white font-bold">1-5</span> of <span class="text-white font-bold">24</span> sessions</p>
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-lg border border-white/10 text-slate-400 text-sm hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+<button class="px-4 py-2 rounded-lg border border-white/10 text-white text-sm bg-white/5 hover:bg-white/10">Next</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

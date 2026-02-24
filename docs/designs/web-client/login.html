@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Youness Garage - Account Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "charcoal": "#1a1a1a",
+                        "charcoal-dark": "#121212",
+                        "electric-teal": "#00f0ff",
+                        "fresh-mint": "#66ffcc",
+                        "glass-dark": "rgba(20, 20, 20, 0.6)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'glow-teal': '0 0 15px rgba(0, 240, 255, 0.3)',
+                        'glow-mint': '0 0 15px rgba(102, 255, 204, 0.4)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-charcoal font-display text-white antialiased overflow-x-hidden selection:bg-electric-teal selection:text-black">
+<header class="absolute top-0 z-50 w-full bg-transparent border-b border-white/10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-3">
+<a class="flex items-center gap-3 group" href="#">
+<div class="flex items-center justify-center w-10 h-10 rounded-lg bg-electric-teal shadow-glow-teal text-black group-hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-2xl font-bold">local_parking</span>
+</div>
+<span class="font-bold text-2xl tracking-tight text-white group-hover:text-electric-teal transition-colors">Youness Garage</span>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-300 hover:text-electric-teal transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-slate-300 hover:text-electric-teal transition-colors" href="#">Locations</a>
+<a class="text-sm font-medium text-slate-300 hover:text-electric-teal transition-colors" href="#">Support</a>
+</nav>
+</div>
+</div>
+</header>
+<main class="relative min-h-screen flex items-center justify-center pt-20 pb-10">
+<div class="fixed inset-0 z-0 bg-charcoal pointer-events-none">
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-electric-teal/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+<div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-fresh-mint/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+</div>
+<div class="relative z-10 w-full max-w-md px-4 sm:px-6">
+<div class="glass-card rounded-2xl shadow-2xl shadow-black/50 overflow-hidden relative p-8 sm:p-10">
+<div class="absolute top-0 left-0 w-32 h-32 bg-electric-teal/10 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+<div class="text-center mb-8">
+<h1 class="text-3xl font-black text-white mb-2 tracking-tight">Welcome Back</h1>
+<p class="text-slate-400 text-sm">Log in to manage your bookings and vehicles.</p>
+</div>
+<form class="space-y-5">
+<div>
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-wide mb-2" for="email">Email Address</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500 group-focus-within:text-electric-teal transition-colors">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-3 bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white placeholder-slate-600 transition-colors" id="email" placeholder="name@example.com" type="email"/>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-wide" for="password">Password</label>
+<a class="text-xs text-electric-teal hover:text-white transition-colors" href="#">Forgot password?</a>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500 group-focus-within:text-electric-teal transition-colors">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-3 bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white placeholder-slate-600 transition-colors" id="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-white/20 bg-white/5 text-electric-teal focus:ring-offset-gray-900 focus:ring-electric-teal cursor-pointer" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block text-sm text-slate-400 cursor-pointer select-none" for="remember-me">Remember me</label>
+</div>
+<div class="space-y-3 pt-2">
+<button class="w-full flex items-center justify-center bg-electric-teal hover:bg-white text-black text-base font-bold py-3.5 px-4 rounded-xl shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] transition-all duration-300 transform active:scale-[0.98]" type="button">
+                            Log In
+                        </button>
+<button class="w-full flex items-center justify-center bg-transparent border border-white/20 hover:border-white text-white hover:text-black hover:bg-white text-base font-bold py-3.5 px-4 rounded-xl transition-all duration-300 transform active:scale-[0.98]" type="button">
+                            Sign Up
+                        </button>
+</div>
+</form>
+<div class="mt-8 relative">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-white/10"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-transparent text-slate-500 text-xs uppercase tracking-wider font-semibold" style="background-color: rgba(30, 30, 30, 0.9);">Or continue with</span>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center w-full px-4 py-2.5 border border-white/10 rounded-lg shadow-sm bg-white/5 text-sm font-medium text-white hover:bg-white/10 hover:border-white/30 transition-all duration-200" type="button">
+<svg aria-hidden="true" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+<path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"></path>
+</svg>
+                        Google
+                    </button>
+<button class="flex items-center justify-center w-full px-4 py-2.5 border border-white/10 rounded-lg shadow-sm bg-white/5 text-sm font-medium text-white hover:bg-white/10 hover:border-white/30 transition-all duration-200" type="button">
+<svg aria-hidden="true" class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+<path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+</svg>
+                        GitHub
+                    </button>
+</div>
+</div>
+<p class="text-center text-xs text-slate-500 mt-6">
+                Protected by reCAPTCHA and subject to the 
+                <a class="text-slate-400 hover:text-white underline" href="#">Privacy Policy</a> and 
+                <a class="text-slate-400 hover:text-white underline" href="#">Terms of Service</a>.
+            </p>
+</div>
+</main>
+
+</body></html>

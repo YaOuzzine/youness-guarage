@@ -1,0 +1,14 @@
+node_modules
+.next
+dist
+out
+.turbo
+**/.turbo
+**/node_modules
+**/dist
+**/out
+.git
+.env
+.env.local
+coverage
+infra

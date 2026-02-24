@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .glass-panel {
+    @apply bg-surface-dark backdrop-blur-md border border-glass-border;
+    box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-panel:hover {
+    @apply border-white/10;
+    box-shadow: 0 0 20px rgba(13, 242, 242, 0.1);
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-page-gradient font-sans text-text-primary antialiased;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}

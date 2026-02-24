@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Youness Garage - Airport Parking Variant 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "charcoal": "#1a1a1a",
+                        "charcoal-dark": "#121212",
+                        "electric-teal": "#00f0ff",
+                        "fresh-mint": "#66ffcc",
+                        "glass-dark": "rgba(20, 20, 20, 0.6)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'glow-teal': '0 0 15px rgba(0, 240, 255, 0.3)',
+                        'glow-mint': '0 0 15px rgba(102, 255, 204, 0.4)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>.toggle-checkbox:checked + .toggle-label {
+            background-color: rgba(0, 240, 255, 0.15);
+            border-color: #00f0ff;
+            color: white;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        .toggle-checkbox:checked + .toggle-label .icon-box {
+            background-color: #00f0ff;
+            color: #121212;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }.glass-card {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-charcoal font-display text-white antialiased overflow-x-hidden selection:bg-electric-teal selection:text-black">
+<header class="absolute top-0 z-50 w-full bg-transparent border-b border-white/10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-10 h-10 rounded-lg bg-electric-teal shadow-glow-teal text-black">
+<span class="material-symbols-outlined text-2xl font-bold">local_parking</span>
+</div>
+<span class="font-bold text-2xl tracking-tight text-white">Youness Garage</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-300 hover:text-electric-teal transition-colors" href="#">Locations</a>
+<a class="text-sm font-medium text-slate-300 hover:text-electric-teal transition-colors" href="#">Pricing</a>
+<a class="text-sm font-medium text-slate-300 hover:text-electric-teal transition-colors" href="#">Support</a>
+<button class="px-5 py-2.5 text-sm font-bold text-black bg-fresh-mint hover:bg-white hover:shadow-glow-mint rounded-lg transition-all duration-300">Log In</button>
+</nav>
+<button class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/10 text-white transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="relative min-h-screen flex flex-col pt-20">
+<div class="fixed inset-0 z-0 bg-charcoal pointer-events-none">
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-electric-teal/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
+<div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-fresh-mint/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex flex-col lg:flex-row gap-12 lg:gap-20 items-center lg:items-start pt-8 pb-16 lg:pt-16">
+<div class="flex-1 text-center lg:text-left pt-4 lg:pt-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-electric-teal/10 border border-electric-teal/20 text-electric-teal text-xs font-bold uppercase tracking-wider mb-6 shadow-glow-teal">
+<span class="w-2 h-2 rounded-full bg-electric-teal animate-pulse"></span>
+                    Live Availability
+                </div>
+<h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight mb-6">
+                    Premium <br class="hidden lg:block"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-fresh-mint to-electric-teal">Airport Parking</span>
+</h1>
+<p class="text-lg text-slate-400 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Elevate your travel experience. Secure, covered parking just <span class="font-bold text-white">5 minutes</span> from the terminal with VIP shuttle service.
+                </p>
+<div class="flex flex-wrap justify-center lg:justify-start gap-6 lg:gap-10 mb-12">
+<div class="flex items-center gap-3 text-slate-300 font-medium">
+<div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-electric-teal">
+<span class="material-symbols-outlined text-xl">security</span>
+</div>
+<span>24/7 Security</span>
+</div>
+<div class="flex items-center gap-3 text-slate-300 font-medium">
+<div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-fresh-mint">
+<span class="material-symbols-outlined text-xl">airport_shuttle</span>
+</div>
+<span>VIP Shuttle</span>
+</div>
+<div class="flex items-center gap-3 text-slate-300 font-medium">
+<div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-electric-teal">
+<span class="material-symbols-outlined text-xl">electric_car</span>
+</div>
+<span>EV Ready</span>
+</div>
+</div>
+</div>
+<div class="w-full max-w-md lg:w-[460px] relative">
+<div class="glass-card rounded-2xl shadow-2xl shadow-black/50 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-32 h-32 bg-electric-teal/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="p-6 sm:p-8 space-y-6 relative z-10">
+<div class="flex items-center justify-between mb-2">
+<h2 class="text-xl font-bold text-white tracking-wide">Reserve Your Spot</h2>
+<span class="text-xs font-bold text-black bg-fresh-mint px-2 py-1 rounded">BEST RATE</span>
+</div>
+<div class="relative group">
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">Airport Location</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-electric-teal">
+<span class="material-symbols-outlined">flight_takeoff</span>
+</div>
+<select class="block w-full pl-10 pr-10 py-3.5 text-base bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white font-medium shadow-sm appearance-none transition-colors cursor-pointer">
+<option class="bg-charcoal">LAX - Los Angeles Intl.</option>
+<option class="bg-charcoal">JFK - New York Intl.</option>
+<option class="bg-charcoal">LHR - Heathrow London</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-5">
+<div>
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">Drop-off</label>
+<div class="relative">
+<input class="block w-full px-4 py-3.5 text-base bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white font-semibold shadow-sm placeholder-slate-500 transition-colors" placeholder="Select drop-off" type="datetime-local"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">Pick-up</label>
+<div class="relative">
+<input class="block w-full px-4 py-3.5 text-base bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white font-semibold shadow-sm placeholder-slate-500 transition-colors" placeholder="Select pick-up" type="datetime-local"/>
+</div>
+</div>
+</div>
+<div class="space-y-3 pt-2">
+<label class="block text-xs font-bold text-slate-400 uppercase tracking-wide">Premium Add-ons</label>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative h-full">
+<input class="toggle-checkbox absolute opacity-0 w-0 h-0" id="car-wash" type="checkbox"/>
+<label class="toggle-label cursor-pointer flex flex-col items-center justify-center p-4 rounded-xl border border-white/10 hover:border-electric-teal/50 bg-black/40 transition-all duration-300 h-full group" for="car-wash">
+<div class="icon-box w-10 h-10 rounded-full bg-white/5 text-slate-400 flex items-center justify-center mb-2 transition-all duration-300 group-hover:text-electric-teal">
+<span class="material-symbols-outlined">local_car_wash</span>
+</div>
+<span class="font-bold text-sm text-white">Car Wash</span>
+<span class="text-xs text-slate-400 mt-1">+$15.00</span>
+</label>
+</div>
+<div class="relative h-full">
+<input class="toggle-checkbox absolute opacity-0 w-0 h-0" id="ev-charging" type="checkbox"/>
+<label class="toggle-label cursor-pointer flex flex-col items-center justify-center p-4 rounded-xl border border-white/10 hover:border-electric-teal/50 bg-black/40 transition-all duration-300 h-full group" for="ev-charging">
+<div class="icon-box w-10 h-10 rounded-full bg-white/5 text-slate-400 flex items-center justify-center mb-2 transition-all duration-300 group-hover:text-electric-teal">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="font-bold text-sm text-white">EV Charging</span>
+<span class="text-xs text-slate-400 mt-1">+$10.00</span>
+</label>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-white/10 mt-2">
+<div class="flex justify-between items-end mb-4">
+<div>
+<p class="text-xs text-slate-400 font-medium mb-1">Estimated Total</p>
+<p class="text-3xl font-black text-white">$45.00</p>
+</div>
+<div class="text-right">
+<span class="text-xs text-fresh-mint flex items-center gap-1 justify-end">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                        Free Cancellation
+                                     </span>
+</div>
+</div>
+<button class="w-full group relative flex items-center justify-center gap-2 bg-fresh-mint hover:bg-white text-black text-lg font-bold py-4 px-6 rounded-xl shadow-[0_0_20px_rgba(102,255,204,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] transition-all duration-300 transform active:scale-[0.98]">
+<span class="relative z-10">Reserve Spot - Pay on Arrival</span>
+<span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1 relative z-10">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-slate-500 mt-4 flex items-center justify-center gap-1.5 opacity-80">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                                Secure checkout, no credit card required
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section class="relative z-10 bg-charcoal-dark/50 border-t border-white/5 py-20 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold text-white mb-4">Why Travelers Choose Us</h2>
+<p class="text-slate-400 max-w-2xl mx-auto">Experience the difference of premium parking service designed for the modern traveler.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group p-8 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-electric-teal/30 transition-all duration-300">
+<div class="w-14 h-14 rounded-full bg-electric-teal/10 text-electric-teal flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-glow-teal">
+<span class="material-symbols-outlined text-3xl">near_me</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-3">Ultra-Close Proximity</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                            Located just minutes from the terminal gates. Our dedicated lanes ensure you skip the traffic and arrive on time.
+                        </p>
+</div>
+<div class="group p-8 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-fresh-mint/30 transition-all duration-300">
+<div class="w-14 h-14 rounded-full bg-fresh-mint/10 text-fresh-mint flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-glow-mint">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-3">Fortress Security</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                            Your vehicle is under constant watch with AI-enhanced surveillance and 24/7 on-site security patrols.
+                        </p>
+</div>
+<div class="group p-8 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-electric-teal/30 transition-all duration-300">
+<div class="w-14 h-14 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-3">Concierge Service</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                            From luggage assistance to vehicle detailing, our team is here to provide a true VIP experience.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-10 bg-charcoal py-20 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[500px] md:h-96 lg:h-[450px]">
+<div class="relative overflow-hidden rounded-2xl col-span-1 md:col-span-2 lg:col-span-2 group border border-white/10">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-80" data-alt="Modern indoor parking garage with bright lights" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBQqb56YPCF2gLGAGyh4GTe2rvurtsjxBQmJ9LdYY3ywW7HV6zXjNhlRyGRCvnwcImnL_0mjJQyTYMlNV3WKUizIQxACfKf1s0H19uf-6Kc3hbPiszp8ghVDIDME97hKsGTEGmWvOj3zvIB41J5l_sgtcvEW62nq3jKK0cbVmOudFJdMuM9xoB9qGOkAjslOAtGDLfROvF8vLn6T7ILdxgI6DRy_5ICBb7oB4-G5YuZmNXAybkeNnInofMj08aam8xeNqFR5vSC69c');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-8">
+<div class="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white text-2xl font-bold mb-1">Premium Indoor Facility</h4>
+<p class="text-slate-300 text-sm">Climate-controlled and weather-protected spaces.</p>
+</div>
+</div>
+</div>
+<div class="relative overflow-hidden rounded-2xl col-span-1 md:col-span-1 group border border-white/10">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-80" data-alt="Close up of an electric vehicle charging station" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDD9Dtxd90mjozGPAJfostsXz1r9uToJL6U9ZbKK9W06OnrQrdXuisr1HJivX4mwT2mK39ZAke-VttHpHp7c4ecFwZwt12d6c5MXvNx2zny1FZ-XNlEAffX1P6D4ovQ6KGU8UwXg7klA5X79odqgSSRADFmKlKq_zYaMcGh3sHva2sPiFbPzXin5p92H7Anjx40QzGLcHoz94q8y5ZpcSKgHkL7lrJVXdLlEZVF4Zzvg1gb04kAF4uOUWi1eTKIJzajADJiZk7YHrA');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-8">
+<div class="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+<h4 class="text-white text-2xl font-bold mb-1">High-Speed EV Charging</h4>
+<p class="text-slate-300 text-sm">Level 2 &amp; DC Fast Chargers available.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-charcoal-dark border-t border-white/10 py-8 relative z-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 text-sm">© 2024 Youness Garage. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-white text-sm transition-colors" href="#">Privacy</a>
+<a class="text-slate-500 hover:text-white text-sm transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</main>
+
+</body></html>

@@ -1,0 +1,47 @@
+{
+  "name": "@youness-garage/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint .",
+    "dev": "node --loader ts-node/esm --no-warnings --watch src/index.ts",
+    "typeorm": "typeorm-ts-node-esm",
+    "migration:generate": "typeorm-ts-node-esm migration:generate -d src/data-source.ts",
+    "migration:run": "typeorm-ts-node-esm migration:run -d src/data-source.ts",
+    "migration:revert": "typeorm-ts-node-esm migration:revert -d src/data-source.ts",
+    "seed": "node --loader ts-node/esm --no-warnings src/seeds/seed.ts"
+  },
+  "dependencies": {
+    "@youness-garage/shared": "workspace:*",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.0",
+    "pg": "^8.16.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.22",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/connect": "^3.4.38",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.2",
+    "@types/express-serve-static-core": "^5.1.1",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.15.0",
+    "@youness-garage/eslint-config": "workspace:*",
+    "@youness-garage/typescript-config": "workspace:*",
+    "eslint": "^9.39.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active Ticket Dark Premium V1 - Desktop</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "charcoal": "#1a1a1a",
+                        "charcoal-dark": "#121212",
+                        "electric-teal": "#00f0ff",
+                        "fresh-mint": "#66ffcc",
+                        "glass-dark": "rgba(20, 20, 20, 0.6)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'glow-teal': '0 0 25px rgba(0, 240, 255, 0.2)',
+                        'glow-mint': '0 0 15px rgba(102, 255, 204, 0.4)',
+                        'glow-card': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-sidebar {
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .qr-glow {
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.15);
+        }
+        .timeline-line {
+            position: absolute;
+            left: 20px; 
+            top: 24px;
+            bottom: 24px;
+            width: 2px;
+            background: rgba(255,255,255,0.1);
+        }::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.1); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.2); 
+        }
+    </style>
+</head>
+<body class="bg-charcoal font-display text-white antialiased h-screen flex overflow-hidden selection:bg-electric-teal selection:text-black">
+<div class="fixed inset-0 z-0 bg-charcoal pointer-events-none overflow-hidden">
+<div class="absolute top-0 right-0 w-[800px] h-[800px] bg-electric-teal/5 rounded-full blur-[150px] -translate-y-1/3 translate-x-1/4"></div>
+<div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-fresh-mint/5 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/4"></div>
+</div>
+<aside class="relative z-20 w-24 lg:w-64 glass-sidebar h-full flex flex-col justify-between p-6 hidden md:flex shrink-0 transition-all duration-300">
+<div>
+<div class="flex items-center gap-3 mb-10 px-2">
+<div class="w-8 h-8 bg-gradient-to-tr from-electric-teal to-fresh-mint rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-black font-bold text-lg">local_parking</span>
+</div>
+<span class="text-lg font-bold tracking-wide hidden lg:block">ParkPremium</span>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 bg-white/10 text-white rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined text-electric-teal">dashboard</span>
+<span class="font-medium hidden lg:block">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-medium hidden lg:block">History</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="font-medium hidden lg:block">Payments</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium hidden lg:block">Settings</span>
+</a>
+</nav>
+</div>
+<div class="space-y-2">
+<button class="w-full flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all">
+<span class="material-symbols-outlined">help</span>
+<span class="font-medium hidden lg:block">Support</span>
+</button>
+<button class="w-full flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl transition-all">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-medium hidden lg:block">Log Out</span>
+</button>
+</div>
+</aside>
+<main class="relative z-10 flex-grow h-full overflow-auto flex flex-col">
+<header class="md:hidden flex items-center justify-between p-4 glass-card border-b border-white/5 sticky top-0 z-30">
+<button class="text-white"><span class="material-symbols-outlined">menu</span></button>
+<h1 class="text-lg font-bold tracking-wide">Dashboard</h1>
+<div class="w-6"></div>
+</header>
+<div class="p-6 lg:p-10 w-full max-w-7xl mx-auto h-full flex flex-col">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h1 class="text-3xl font-black tracking-tight text-white mb-1">Active Session</h1>
+<p class="text-slate-400">Manage your current parking status and services.</p>
+</div>
+<div class="hidden md:flex gap-3">
+<button class="group flex items-center gap-2 py-2.5 px-5 rounded-xl border border-electric-teal/30 bg-electric-teal/5 hover:bg-electric-teal/10 text-electric-teal font-bold transition-all duration-300">
+<span class="material-symbols-outlined text-lg">near_me</span>
+<span>Get Directions</span>
+</button>
+<button class="group flex items-center gap-2 py-2.5 px-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium transition-all duration-300">
+<span class="material-symbols-outlined text-lg">call</span>
+<span>Support</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 h-full pb-10">
+<div class="lg:col-span-5 xl:col-span-4 flex flex-col gap-6">
+<div class="glass-card rounded-[2rem] p-8 lg:p-10 relative overflow-hidden qr-glow border border-electric-teal/20 h-full flex flex-col justify-center items-center shadow-glow-card">
+<div class="absolute top-0 right-0 w-64 h-64 bg-electric-teal/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-fresh-mint/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+<div class="flex flex-col items-center w-full space-y-8 relative z-10">
+<div class="w-full flex justify-between items-center border-b border-white/10 pb-4 mb-2">
+<span class="text-xs font-bold text-electric-teal uppercase tracking-widest">Digital Pass</span>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fresh-mint/10 border border-fresh-mint/20">
+<span class="w-2 h-2 rounded-full bg-fresh-mint animate-pulse"></span>
+<span class="text-fresh-mint text-xs font-bold uppercase tracking-wide">Active</span>
+</div>
+</div>
+<div class="p-6 bg-white rounded-3xl shadow-glow-teal transform transition-transform hover:scale-105 duration-500">
+<img alt="Parking QR Code" class="w-56 h-56 lg:w-64 lg:h-64 object-contain mix-blend-multiply opacity-95" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKNCA6zoTllZ2H-WeOt7QFjpUbgezBd4M0o6sKnJOYW0UuIgAWskK2oOi1RpZ3te3KPp3-o3vXGWwA4iBhLiW2QjMQWWkUgZs6OrSZH-p8F8tOB9KjrQwHcsU6Kc30-IwfaN3JnkthOiWs5wZqJ-cLxhTukfGz2lvkpurckQFwRdLK_-x7LJa_Aaj8ipF9eG4FcehQposOgFpt_KmBqVUrv6rJ837QlT1UBgpQb6d77zCMmxPYHnk-SD_o5pmdgCg52zMMeCCLtjY"/>
+</div>
+<div class="text-center space-y-2">
+<h2 class="text-4xl font-black text-white tracking-tight">P-8294</h2>
+<p class="text-slate-400 text-sm font-mono tracking-widest uppercase">Booking Reference</p>
+</div>
+<div class="w-full bg-white/5 rounded-xl p-4 flex items-center justify-between border border-white/5 mt-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-charcoal flex items-center justify-center text-electric-teal">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<div>
+<p class="text-white font-bold text-sm">SEAT Ateca FR</p>
+<p class="text-slate-400 text-xs font-mono">ABC-1234</p>
+</div>
+</div>
+<span class="text-xs text-electric-teal font-bold px-2 py-1 bg-electric-teal/10 rounded">OWNER</span>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass-card rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<h3 class="text-slate-400 text-xs font-bold uppercase tracking-wide mb-1">Vehicle Location</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-black text-white">Zone B</span>
+<span class="text-lg font-medium text-slate-400">Level 2</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-electric-teal">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+</div>
+<div class="mt-2 pt-4 border-t border-white/5 relative z-10">
+<p class="text-xs text-slate-400 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+                                Near Elevator B2, Row 14
+                            </p>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-6 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<h3 class="text-slate-400 text-xs font-bold uppercase tracking-wide mb-1">Current Total</h3>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black text-white">$42.50</span>
+<span class="text-sm text-slate-500 font-medium">USD</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-fresh-mint">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+</div>
+<div class="mt-2 pt-4 border-t border-white/5 relative z-10">
+<p class="text-xs text-slate-400 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                                Rate: $5.00/hr + Services
+                            </p>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-3xl p-8 flex-grow">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-lg font-bold text-white tracking-wide">Service Progress</h3>
+<span class="px-3 py-1 rounded-full bg-white/5 text-xs text-slate-400 font-mono">ID: #SRV-9921</span>
+</div>
+<div class="relative pl-8 md:pl-16 space-y-10 lg:space-y-12 max-w-3xl">
+<div class="timeline-line bg-gradient-to-b from-electric-teal via-fresh-mint to-slate-800 h-full left-4 md:left-[3.5rem]"></div>
+<div class="relative flex items-start group">
+<div class="absolute -left-12 md:-left-[4.5rem] top-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-electric-teal/20 border border-electric-teal text-electric-teal flex items-center justify-center shadow-glow-teal z-10">
+<span class="material-symbols-outlined text-lg font-bold">check</span>
+</div>
+<div class="flex-grow pl-4">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+<h4 class="text-white font-bold text-lg">Checked In</h4>
+<span class="text-slate-500 text-xs font-mono">08:30 AM</span>
+</div>
+<p class="text-slate-400 text-sm mt-1">Vehicle successfully parked and keys handed over.</p>
+</div>
+</div>
+<div class="relative flex items-start group">
+<div class="absolute -left-12 md:-left-[4.5rem] top-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-electric-teal/20 border border-electric-teal text-electric-teal flex items-center justify-center shadow-glow-teal z-10">
+<span class="material-symbols-outlined text-lg font-bold">check</span>
+</div>
+<div class="flex-grow pl-4">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+<h4 class="text-white font-bold text-lg">Premium Car Wash</h4>
+<span class="text-slate-500 text-xs font-mono">10:15 AM</span>
+</div>
+<p class="text-slate-400 text-sm mt-1">Exterior wash and interior detailing completed.</p>
+</div>
+</div>
+<div class="relative flex items-start">
+<div class="absolute -left-12 md:-left-[4.5rem] top-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-fresh-mint text-charcoal-dark flex items-center justify-center shadow-glow-mint animate-pulse z-10 border-4 border-charcoal">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+<div class="flex-grow pl-4">
+<div class="bg-white/5 rounded-xl p-4 border border-fresh-mint/30">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+<h4 class="text-white font-bold text-lg flex items-center gap-3">
+                                            EV Charging
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] bg-fresh-mint text-charcoal font-bold tracking-wider uppercase">In Progress</span>
+</h4>
+<span class="text-fresh-mint text-xs font-mono mt-1 sm:mt-0">Est. 15m remaining</span>
+</div>
+<div class="w-full bg-charcoal rounded-full h-2 mb-2 overflow-hidden">
+<div class="bg-gradient-to-r from-electric-teal to-fresh-mint h-2 rounded-full w-[85%] shadow-[0_0_10px_rgba(102,255,204,0.5)]"></div>
+</div>
+<div class="flex justify-between text-xs text-slate-400 font-mono">
+<span>Current: 85%</span>
+<span>Target: 100%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="relative flex items-start opacity-40">
+<div class="absolute -left-12 md:-left-[4.5rem] top-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-lg">directions_car</span>
+</div>
+<div class="flex-grow pl-4">
+<div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+<h4 class="text-white font-bold text-lg">Ready for Pickup</h4>
+<span class="text-slate-500 text-xs font-mono">--:--</span>
+</div>
+<p class="text-slate-400 text-sm mt-1">Vehicle will be moved to the departure zone.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

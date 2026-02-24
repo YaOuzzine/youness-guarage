@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Garage Admin System Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0df2f2",
+                        "primary-dark": "#0bb8b8",
+                        "primary-glow": "rgba(13, 242, 242, 0.15)",
+                        "background-dark": "#0f172a", 
+                        "background-gradient-start": "#111827",
+                        "background-gradient-end": "#0f172a",
+                        "surface-dark": "rgba(30, 41, 59, 0.7)",
+                        "sidebar-dark": "#111827", 
+                        "text-primary": "#f8fafc", 
+                        "text-secondary": "#94a3b8",
+                        "success-light": "rgba(52, 211, 153, 0.15)",
+                        "success-text": "#34d399",
+                        "info-light": "rgba(13, 242, 242, 0.1)",
+                        "info-text": "#22d3ee",
+                        "glass-border": "rgba(255, 255, 255, 0.08)",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'page-gradient': 'linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a)',
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .glass-panel {
+            @apply bg-surface-dark backdrop-blur-md border border-glass-border shadow-[0_4px_20px_-1px_rgba(0,0,0,0.3)];
+        }
+        .glass-panel:hover {
+            @apply border-white/10 shadow-[0_0_20px_rgba(13,242,242,0.1)];
+        }
+        .input-dark {
+            @apply bg-[#0f172a]/60 border border-gray-700 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all w-full py-2.5 px-4;
+        }
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0df2f2;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0df2f2;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; 
+        }
+    </style>
+</head>
+<body class="bg-page-gradient font-sans text-text-primary antialiased h-screen flex overflow-hidden">
+<aside class="w-20 lg:w-64 flex flex-col justify-between bg-[#111827] border-r border-gray-800 text-white transition-all duration-300 flex-shrink-0 z-20">
+<div class="flex flex-col h-full">
+<div class="h-20 flex items-center justify-center lg:justify-start lg:px-6 border-b border-gray-800">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-[#111827] shadow-[0_0_15px_rgba(13,242,242,0.4)]">
+<span class="material-symbols-outlined text-[24px] font-bold">local_parking</span>
+</div>
+<span class="ml-3 font-bold text-xl hidden lg:block tracking-tight text-white drop-shadow-md">GarageOS</span>
+</div>
+<nav class="flex-1 py-8 space-y-2 px-4">
+<a class="flex items-center px-4 py-3.5 text-gray-400 hover:text-white hover:bg-[#1f2937]/50 rounded-xl group transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="ml-3 font-medium hidden lg:block">Dashboard</span>
+</a>
+<a class="flex items-center px-4 py-3.5 text-gray-400 hover:text-white hover:bg-[#1f2937]/50 rounded-xl group transition-colors" href="#">
+<span class="material-symbols-outlined">directions_car</span>
+<span class="ml-3 font-medium hidden lg:block">Arrivals</span>
+</a>
+<a class="flex items-center px-4 py-3.5 text-gray-400 hover:text-white hover:bg-[#1f2937]/50 rounded-xl group transition-colors" href="#">
+<span class="material-symbols-outlined">flight_takeoff</span>
+<span class="ml-3 font-medium hidden lg:block">Departures</span>
+</a>
+<a class="flex items-center px-4 py-3.5 text-gray-400 hover:text-white hover:bg-[#1f2937]/50 rounded-xl group transition-colors" href="#">
+<span class="material-symbols-outlined">car_repair</span>
+<span class="ml-3 font-medium hidden lg:block">Services</span>
+</a>
+<a class="flex items-center px-4 py-3.5 text-primary bg-[#1f2937]/80 rounded-xl group transition-all relative border border-primary/20 shadow-[0_0_10px_rgba(13,242,242,0.1)]" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="ml-3 font-medium hidden lg:block">Settings</span>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-primary rounded-r-full shadow-[0_0_8px_#0df2f2]"></div>
+</a>
+</nav>
+<div class="p-4 border-t border-gray-800 bg-[#0f172a]/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-cover bg-center shrink-0 border-2 border-primary/30 shadow-[0_0_8px_rgba(13,242,242,0.2)]" data-alt="User profile picture placeholder" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjreX-arND2565vldXBtOyEkwcIwZs-IiVHHC8aQjKNxexccys6RNQMwnf0DvTXIJxAXUf15RMoyYYgOI5QGrbdO2_DGEpqWzcmObV1WMKRElQO0ZZ-uopnGvIa7znZiXrOMYX-Vlqnw_s3sfUu5Xs42N3QM7btY31AE-8LkmXaVca0Gi9eQUVyO_JFEXI251C0Xd7c-CYhvVXIWMuMWsWipr_mvdbtqsvES2BWtBlKl_EUkYOt5-bdxJVZaWtRdnkEyWarH24Y0A');"></div>
+<div class="hidden lg:flex flex-col overflow-hidden">
+<p class="text-sm font-semibold text-white truncate">Admin User</p>
+<p class="text-xs text-primary/80 truncate">Manager</p>
+</div>
+<button class="ml-auto text-gray-400 hover:text-primary transition-colors hidden lg:block">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-hidden relative bg-page-gradient">
+<header class="h-20 bg-surface-dark backdrop-blur-md border-b border-glass-border flex items-center justify-between px-8 flex-shrink-0 z-10">
+<div>
+<h1 class="text-2xl font-bold text-white tracking-tight">System Settings</h1>
+<p class="text-xs text-text-secondary mt-0.5">Manage garage capacity, pricing, and staff access</p>
+</div>
+<div class="flex items-center gap-5">
+<div class="relative hidden md:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2.5 bg-[#0f172a]/60 border border-gray-700 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 w-72 transition-all" placeholder="Search settings..." type="text"/>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/5 rounded-full relative transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-primary rounded-full shadow-[0_0_5px_#0df2f2]"></span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8 relative pb-24">
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+<div class="absolute top-[-10%] right-[10%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[20%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+</div>
+<div class="max-w-[1200px] mx-auto flex flex-col gap-8 relative z-10">
+<div class="glass-panel rounded-2xl p-6 relative overflow-hidden">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">warehouse</span>
+</div>
+<h2 class="text-lg font-bold text-white">Garage Capacity</h2>
+</div>
+<span class="text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-1 rounded-md">Live Status: Active</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-medium text-text-secondary uppercase tracking-wider">Total Standard Spots</label>
+<input class="input-dark" type="number" value="450"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-medium text-text-secondary uppercase tracking-wider">Reserved VIP Spots</label>
+<input class="input-dark" type="number" value="25"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-medium text-text-secondary uppercase tracking-wider">EV Charging Spots</label>
+<input class="input-dark" type="number" value="12"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-medium text-text-secondary uppercase tracking-wider">Valet Zone Capacity</label>
+<input class="input-dark" type="number" value="50"/>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5">
+<div>
+<p class="text-sm font-medium text-white">Automated Barrier Control</p>
+<p class="text-xs text-gray-500">Close entry automatically when capacity reaches 98%</p>
+</div>
+<label class="flex items-center cursor-pointer relative" for="barrier-toggle">
+<input checked="" class="sr-only peer" id="barrier-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-700 rounded-full peer peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-6 relative overflow-hidden">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">attach_money</span>
+</div>
+<h2 class="text-lg font-bold text-white">Pricing Models</h2>
+</div>
+<button class="text-xs text-primary hover:text-white transition-colors underline">View Pricing History</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-medium text-text-secondary uppercase tracking-wider">Hourly Rate ($)</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+<input class="input-dark pl-7" type="text" value="8.00"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-medium text-text-secondary uppercase tracking-wider">Daily Max ($)</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+<input class="input-dark pl-7" type="text" value="45.00"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-medium text-text-secondary uppercase tracking-wider">Overnight Surcharge</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+<input class="input-dark pl-7" type="text" value="15.00"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-medium text-text-secondary uppercase tracking-wider">Lost Ticket Fee</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+<input class="input-dark pl-7" type="text" value="60.00"/>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-glass-border">
+<h3 class="text-sm font-semibold text-white mb-4">Dynamic Pricing Rules</h3>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5">
+<div>
+<p class="text-sm font-medium text-white">Peak Hour Surge (7AM - 9AM)</p>
+<p class="text-xs text-gray-500">+15% on hourly rates</p>
+</div>
+<label class="flex items-center cursor-pointer relative" for="surge-toggle">
+<input checked="" class="sr-only peer" id="surge-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-700 rounded-full peer peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5">
+<div>
+<p class="text-sm font-medium text-white">Holiday Rates</p>
+<p class="text-xs text-gray-500">Apply special pricing calendar automatically</p>
+</div>
+<label class="flex items-center cursor-pointer relative" for="holiday-toggle">
+<input class="sr-only peer" id="holiday-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-700 rounded-full peer peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-6 relative overflow-hidden">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">local_car_wash</span>
+</div>
+<h2 class="text-lg font-bold text-white">Service Packages</h2>
+</div>
+<button class="flex items-center gap-1 text-xs font-bold text-black bg-primary hover:bg-primary-dark transition-colors px-3 py-1.5 rounded-lg shadow-[0_0_10px_rgba(13,242,242,0.2)]">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Package
+                        </button>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/5 group hover:border-primary/30 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-info-light flex items-center justify-center text-info-text border border-cyan-500/20">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white">Basic Wash</h4>
+<p class="text-xs text-gray-400">Exterior only, 30 min duration</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="block text-xs text-gray-500 uppercase">Price</span>
+<span class="font-mono text-white">$25.00</span>
+</div>
+<div class="text-right hidden sm:block">
+<span class="block text-xs text-gray-500 uppercase">Daily Limit</span>
+<span class="font-mono text-white">20</span>
+</div>
+<label class="flex items-center cursor-pointer relative">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-success-text"></div>
+</label>
+<button class="text-gray-400 hover:text-white"><span class="material-symbols-outlined">edit</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/5 group hover:border-primary/30 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-success-light flex items-center justify-center text-success-text border border-emerald-500/20">
+<span class="material-symbols-outlined">ev_station</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white">EV Fast Charge</h4>
+<p class="text-xs text-gray-400">Level 3 DC Fast Charging</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="block text-xs text-gray-500 uppercase">Price</span>
+<span class="font-mono text-white">$0.45/kWh</span>
+</div>
+<div class="text-right hidden sm:block">
+<span class="block text-xs text-gray-500 uppercase">Daily Limit</span>
+<span class="font-mono text-white">∞</span>
+</div>
+<label class="flex items-center cursor-pointer relative">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-success-text"></div>
+</label>
+<button class="text-gray-400 hover:text-white"><span class="material-symbols-outlined">edit</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-xl border border-white/5 group hover:border-primary/30 transition-all">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-purple-500/15 flex items-center justify-center text-purple-400 border border-purple-500/20">
+<span class="material-symbols-outlined">diamond</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white">Premium Detail</h4>
+<p class="text-xs text-gray-400">Full interior &amp; exterior, wax</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<span class="block text-xs text-gray-500 uppercase">Price</span>
+<span class="font-mono text-white">$150.00</span>
+</div>
+<div class="text-right hidden sm:block">
+<span class="block text-xs text-gray-500 uppercase">Daily Limit</span>
+<span class="font-mono text-white">5</span>
+</div>
+<label class="flex items-center cursor-pointer relative">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-success-text"></div>
+</label>
+<button class="text-gray-400 hover:text-white"><span class="material-symbols-outlined">edit</span></button>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-6 relative overflow-hidden">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<h2 class="text-lg font-bold text-white">Staff Management</h2>
+</div>
+<button class="flex items-center gap-1 text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/10 transition-colors px-3 py-1.5 rounded-lg">
+                            Manage Roles
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="text-xs text-text-secondary uppercase bg-white/5">
+<tr>
+<th class="px-4 py-3 rounded-l-lg">Name</th>
+<th class="px-4 py-3">Role</th>
+<th class="px-4 py-3">Last Active</th>
+<th class="px-4 py-3 text-right rounded-r-lg">Access Level</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-glass-border">
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-4 py-3 font-medium text-white flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-gray-700 to-gray-600 flex items-center justify-center text-xs font-bold">JD</div>
+                                        John Doe
+                                    </td>
+<td class="px-4 py-3 text-gray-300">Manager</td>
+<td class="px-4 py-3 text-gray-500">2 mins ago</td>
+<td class="px-4 py-3 text-right">
+<select class="bg-[#0f172a] border border-gray-700 text-white text-xs rounded-lg focus:ring-primary focus:border-primary block p-1.5 ml-auto">
+<option selected="">Admin</option>
+<option>Editor</option>
+<option>Viewer</option>
+</select>
+</td>
+</tr>
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-4 py-3 font-medium text-white flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-gray-700 to-gray-600 flex items-center justify-center text-xs font-bold">AS</div>
+                                        Alice Smith
+                                    </td>
+<td class="px-4 py-3 text-gray-300">Attendant</td>
+<td class="px-4 py-3 text-gray-500">1 hour ago</td>
+<td class="px-4 py-3 text-right">
+<select class="bg-[#0f172a] border border-gray-700 text-white text-xs rounded-lg focus:ring-primary focus:border-primary block p-1.5 ml-auto">
+<option>Admin</option>
+<option selected="">Editor</option>
+<option>Viewer</option>
+</select>
+</td>
+</tr>
+<tr class="group hover:bg-white/5 transition-colors">
+<td class="px-4 py-3 font-medium text-white flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-gray-700 to-gray-600 flex items-center justify-center text-xs font-bold">RB</div>
+                                        Robert Brown
+                                    </td>
+<td class="px-4 py-3 text-gray-300">Security</td>
+<td class="px-4 py-3 text-gray-500">5 hours ago</td>
+<td class="px-4 py-3 text-right">
+<select class="bg-[#0f172a] border border-gray-700 text-white text-xs rounded-lg focus:ring-primary focus:border-primary block p-1.5 ml-auto">
+<option>Admin</option>
+<option>Editor</option>
+<option selected="">Viewer</option>
+</select>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-8 right-8 z-50">
+<button class="flex items-center gap-2 px-6 py-3.5 bg-primary hover:bg-primary-dark text-black font-bold rounded-xl shadow-[0_0_20px_rgba(13,242,242,0.4)] hover:shadow-[0_0_30px_rgba(13,242,242,0.6)] transform hover:-translate-y-1 transition-all duration-300">
+<span class="material-symbols-outlined">save</span>
+                Save Changes
+            </button>
+</div>
+</main>
+
+</body></html>

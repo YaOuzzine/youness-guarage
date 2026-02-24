@@ -1,0 +1,19 @@
+{
+  "name": "@youness-garage/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@youness-garage/eslint-config": "workspace:*",
+    "@youness-garage/typescript-config": "workspace:*",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.2"
+  }
+}
