@@ -3,6 +3,8 @@
 # ─────────────────────────────────────────────
 FROM node:20-alpine AS pruner
 RUN apk add --no-cache libc6-compat
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pnpm add -g turbo
 
@@ -15,6 +17,8 @@ RUN turbo prune @youness-garage/api --docker
 # ─────────────────────────────────────────────
 FROM node:20-alpine AS installer
 RUN apk add --no-cache libc6-compat
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
