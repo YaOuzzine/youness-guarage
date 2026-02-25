@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { getAvailableSpots } from '@/lib/api';
 import type { ParkingSpotResponse } from '@youness-garage/shared';
 import { useLocale } from '../../i18n/LocaleContext';
+import { DateTimePicker } from '@/components/DateTimePicker';
 
 export default function BookPage() {
   const { t } = useLocale();
@@ -61,22 +62,24 @@ export default function BookPage() {
               <label className="block text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">
                 {t.book.checkInLabel}
               </label>
-              <input
-                type="datetime-local"
+              <DateTimePicker
                 value={checkIn}
-                onChange={(e) => setCheckIn(e.target.value)}
-                className="block w-full px-4 py-3.5 text-base bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white font-semibold shadow-sm placeholder-slate-500 transition-colors"
+                onChange={setCheckIn}
+                label={t.book.checkInLabel}
+                icon="flight_land"
+                min={new Date().toISOString().slice(0, 16)}
               />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">
                 {t.book.checkOutLabel}
               </label>
-              <input
-                type="datetime-local"
+              <DateTimePicker
                 value={checkOut}
-                onChange={(e) => setCheckOut(e.target.value)}
-                className="block w-full px-4 py-3.5 text-base bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white font-semibold shadow-sm placeholder-slate-500 transition-colors"
+                onChange={setCheckOut}
+                label={t.book.checkOutLabel}
+                icon="flight_takeoff"
+                min={checkIn || new Date().toISOString().slice(0, 16)}
               />
             </div>
             <div>

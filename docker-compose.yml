@@ -44,17 +44,5 @@ services:
     depends_on:
       - api
 
-  web-admin:
-    build:
-      context: .
-      dockerfile: apps/web-admin/Dockerfile
-    restart: unless-stopped
-    ports:
-      - "3001:3001"
-    environment:
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
-    depends_on:
-      - api
-
 volumes:
   pgdata:

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale } from '../i18n/LocaleContext';
+import { DateTimePicker } from './DateTimePicker';
 
 export function BookingForm() {
   const router = useRouter();
@@ -25,6 +26,9 @@ export function BookingForm() {
     if (evCharging) params.set('evCharging', '1');
     router.push(`/book/confirm?${params.toString()}`);
   }
+
+  // Minimum dates: drop-off is now, pick-up is after drop-off
+  const nowIso = new Date().toISOString().slice(0, 16);
 
   return (
     <div className="w-full max-w-md lg:w-[460px] relative">
@@ -78,29 +82,25 @@ export function BookingForm() {
               <label className="block text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">
                 {t.bookingForm.dropOff}
               </label>
-              <div className="relative">
-                <input
-                  type="datetime-local"
-                  value={dropOff}
-                  onChange={(e) => setDropOff(e.target.value)}
-                  className="block w-full px-4 py-3.5 text-base bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white font-semibold shadow-sm placeholder-slate-500 transition-colors"
-                  placeholder="Select drop-off"
-                />
-              </div>
+              <DateTimePicker
+                value={dropOff}
+                onChange={setDropOff}
+                label={t.bookingForm.dropOff}
+                icon="flight_land"
+                min={nowIso}
+              />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-400 uppercase tracking-wide mb-2">
                 {t.bookingForm.pickUp}
               </label>
-              <div className="relative">
-                <input
-                  type="datetime-local"
-                  value={pickUp}
-                  onChange={(e) => setPickUp(e.target.value)}
-                  className="block w-full px-4 py-3.5 text-base bg-black/40 border border-white/10 hover:border-electric-teal focus:border-electric-teal focus:ring-1 focus:ring-electric-teal rounded-lg text-white font-semibold shadow-sm placeholder-slate-500 transition-colors"
-                  placeholder="Select pick-up"
-                />
-              </div>
+              <DateTimePicker
+                value={pickUp}
+                onChange={setPickUp}
+                label={t.bookingForm.pickUp}
+                icon="flight_takeoff"
+                min={dropOff || nowIso}
+              />
             </div>
           </div>
 

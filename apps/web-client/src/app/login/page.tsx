@@ -21,8 +21,8 @@ export default function LoginPage() {
     setError('');
     setSubmitting(true);
     try {
-      await login({ email, password });
-      router.push('/account/dashboard');
+      const u = await login({ email, password });
+      router.push(u.role === 'ADMIN' ? '/admin' : '/account/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
@@ -31,7 +31,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative min-h-screen flex items-center justify-center pt-20 pb-10">
+    <main className="relative min-h-screen flex items-center justify-center py-10">
       {/* Background gradients */}
       <div className="fixed inset-0 z-0 bg-charcoal pointer-events-none">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-electric-teal/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />

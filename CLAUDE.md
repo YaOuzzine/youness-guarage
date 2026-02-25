@@ -15,15 +15,14 @@ This project operates as a monorepo managed by **Turborepo**.
 
 - **Language:** Strict TypeScript.
 - **Database:** PostgreSQL (hosted via Neon).
-- **ORM:** TypeORM.
+- **ORM:** Drizzle (web-client direct-to-Neon), TypeORM (API).
 - **Backend (`apps/api`):** Node.js / Express.
-- **Frontends (`apps/web-client` & `apps/web-admin`):** React (Next.js App Router), Tailwind CSS.
+- **Frontend (`apps/web-client`):** React (Next.js App Router), Tailwind CSS.
 - **Infrastructure:** Docker for local containerization; Terraform for infrastructure as code.
 
 **Directory Structure:**
 
-- `apps/web-client/`: The public-facing guest booking site. Focus on SEO and mobile-first conversions.
-- `apps/web-admin/`: The internal dashboard. Focus on utility, fast data-tables, and visual tags for requested add-ons.
+- `apps/web-client/`: The public-facing guest booking site AND role-protected admin dashboard at `/admin/*`. Focus on SEO, mobile-first conversions, and admin scannability.
 - `apps/api/`: The backend API handling business logic and TypeORM database interactions.
 - `packages/shared/`: Shared TypeScript types, utility functions, and core UI components.
 

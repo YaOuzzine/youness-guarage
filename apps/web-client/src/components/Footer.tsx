@@ -1,10 +1,17 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useLocale } from '../i18n/LocaleContext';
 
 export function Footer() {
   const { t } = useLocale();
+  const pathname = usePathname();
+
+  // Hide footer on admin pages and auth pages (login/register)
+  if (pathname.startsWith('/admin') || pathname === '/login' || pathname === '/register') {
+    return null;
+  }
 
   return (
     <footer className="bg-charcoal-dark border-t border-white/10 py-8 relative z-10">

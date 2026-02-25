@@ -17,8 +17,11 @@ export default function AuthenticatedLayout({
   const { user, loading, logout } = useAuth();
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (loading) return;
+    if (!user) {
       router.replace('/login');
+    } else if (user.role === 'ADMIN') {
+      router.replace('/admin');
     }
   }, [loading, user, router]);
 

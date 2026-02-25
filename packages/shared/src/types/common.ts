@@ -28,3 +28,47 @@ export interface ParkingSpotResponse {
   isAvailable: boolean;
   type: ParkingSpotType;
 }
+
+export interface PaymentMethodResponse {
+  id: string;
+  last4: string;
+  brand: string;
+  expMonth: number;
+  expYear: number;
+  isDefault: boolean;
+  createdAt: string;
+}
+
+export interface AddPaymentMethodDto {
+  last4: string;
+  brand: string;
+  expMonth: number;
+  expYear: number;
+}
+
+export interface VehicleResponse {
+  id: string;
+  licensePlate: string;
+  make: string;
+  model: string;
+  color: string | null;
+  year: number | null;
+  isDefault: boolean;
+  createdAt: string;
+}
+
+export interface CreateVehicleDto {
+  licensePlate: string;
+  make: string;
+  model: string;
+  color?: string;
+  year?: number;
+}
+
+export interface UpdateVehicleDto {
+  licensePlate?: string;
+  make?: string;
+  model?: string;
+  color?: string;
+  year?: number;
+}

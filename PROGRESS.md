@@ -360,3 +360,97 @@
 - Generate and run DB migration for auth + booking userId
 - Phase 7: Add-On Services
 - Phase 8: Replace placeholder payment with real Stripe integration
+
+---
+
+## 2026-02-24 — Direct Neon DB Migration (Ditch Express API)
+
+### Completed
+
+**Phase 1: DB Layer in Web-Client**
+- [x] Installed deps: `@neondatabase/serverless`, `drizzle-orm`, `bcryptjs`, `jose` (+ devDeps: `drizzle-kit`, `@types/bcryptjs`)
+- [x] Created Drizzle schema (`src/lib/db/schema.ts`) matching existing TypeORM entities (user, booking, parkingSpot, addon, refreshToken)
+- [x] Created DB connection singleton (`src/lib/db/index.ts`) using `neon()` + `drizzle()`
+- [x] Created auth utilities (`src/lib/auth.ts`): password hashing (bcryptjs), JWT (jose HS256), refresh tokens (crypto SHA-256), cookie management
+
+**Phase 2: Server Actions**
+- [x] Auth actions (`src/app/actions/auth.ts`): register, login, logout, refreshSession, getMe, updateProfile
+- [x] Booking actions (`src/app/actions/bookings.ts`): createBooking, getBooking, getMyBookings, getAllBookings (admin), updateBookingStatus (admin), cancelBooking, checkoutBooking
+- [x] Spot actions (`src/app/actions/spots.ts`): getAllSpots, getAvailableSpots (temporal overlap detection)
+- [x] Addon actions (`src/app/actions/addons.ts`): createAddon, getAllAddons (admin w/ booking join), updateAddonStatus (admin)
+
+**Phase 3: Merge Admin into Web-Client**
+- [x] Copied 7 admin components to `src/components/admin/` (Sidebar, TopBar, AdminShell, DataTable, StatsCard, StatusBadge, AddonIcon)
+- [x] Created admin route group (`src/app/admin/`) with layout + 6 pages (dashboard, arrivals, departures, services, settings, login)
+- [x] Added admin Tailwind tokens (admin-primary, admin-bg, admin-surface, admin-sidebar)
+- [x] Added `.glass-panel` class to globals.css
+- [x] Added `admin` namespace to i18n (en.ts + fr.ts)
+- [x] Added Next.js middleware: JWT verification at edge for `/admin/*` (ADMIN role) and `/account/*` (any auth)
+
+**Phase 4: Wire All Pages to Real Data**
+- [x] Rewrote `src/lib/api.ts` as thin facade over server actions (all existing imports keep working)
+- [x] AuthContext + login/register pages work via server actions (no changes needed)
+- [x] Booking flow pages (`/book`, `/book/confirm`, `/book/checkout`, `/book/success`) work via api.ts facade
+- [x] Admin Dashboard — fetches real bookings, computes stats, wires check-in/check-out buttons
+- [x] Admin Arrivals — fetches CONFIRMED bookings, wires check-in action
+- [x] Admin Departures — fetches CHECKED_IN bookings, computes overdue, wires check-out action
+- [x] Admin Services — fetches real addons with booking info, wires status toggle
+- [x] Account Dashboard — fetches most recent booking, dynamic service timeline, empty state
+- [x] Account History — fetches user's bookings with pagination, real table data
+- [x] Account Settings — fetches user profile, wires Save to updateProfile server action
+
+**Phase 5: Verification**
+- [x] `pnpm turbo check-types` — passes (0 errors)
+- [x] `pnpm turbo build` — builds clean (26 pages compiled)
+- [x] Cleaned up unused imports (drizzle-orm `sql`, `not`, `or`; unused `BookingResponse` import; unused `ADDON_PRICES`)
+- [x] Added env vars to turbo.json: DATABASE_URL, JWT_SECRET, NODE_ENV
+
+### Architecture Change
+
+```
+BEFORE: Express API (Render) → Neon DB ← Next.js web-client (Vercel) + Next.js web-admin (Vercel)
+AFTER:  Next.js web-client (Vercel) → Neon DB directly via Drizzle ORM + server actions
+```
+
+- Express API stays in repo but is not deployed
+- web-admin merged into web-client under `/admin` routes
+- All data access via `'use server'` actions with direct DB queries
+- JWT auth via `jose` (Edge-compatible) + `bcryptjs` (pure JS) — no native deps
+- httpOnly cookies set/read via `next/headers` `cookies()`
+
+### Files Summary
+
+**New files (18):**
+- `src/lib/db/schema.ts`, `src/lib/db/index.ts`, `src/lib/auth.ts`
+- `src/app/actions/auth.ts`, `bookings.ts`, `spots.ts`, `addons.ts`
+- `src/components/admin/` (7 component files)
+- `src/app/admin/layout.tsx` + 6 page files
+- `middleware.ts`
+
+**Modified files (12):**
+- `package.json` (new deps)
+- `tailwind.config.ts` (admin colors)
+- `globals.css` (glass-panel)
+- `en.ts`, `fr.ts` (admin i18n)
+- `api.ts` (facade over server actions)
+- `admin/page.tsx`, `admin/arrivals/page.tsx`, `admin/departures/page.tsx`, `admin/services/page.tsx`
+- `account/dashboard/page.tsx`, `account/history/page.tsx`, `account/settings/page.tsx`
+- `turbo.json` (env vars)
+
+### Deployment
+
+Set on Vercel:
+```
+DATABASE_URL=postgresql://user:pass@ep-xxx.neon.tech/neondb?sslmode=require
+JWT_SECRET=<64-char random string>
+```
+
+Root Directory: `apps/web-client`
+Build Command: `cd ../.. && pnpm install && pnpm --filter @youness-garage/shared build && pnpm --filter @youness-garage/web-client build`
+
+### Next
+
+- Deploy to Vercel with env vars
+- Run existing TypeORM migrations against Neon DB to create tables (if starting fresh)
+- Phase 7: Add-On Services integration into booking flow
+- Phase 8: Stripe payment integration

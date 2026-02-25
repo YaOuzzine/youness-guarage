@@ -11,6 +11,11 @@ const config: Config = {
         'fresh-mint': '#66ffcc',
         'glass-dark': 'rgba(20, 20, 20, 0.6)',
         'glass-border': 'rgba(255, 255, 255, 0.1)',
+        // Admin palette
+        'admin-primary': '#0df2f2',
+        'admin-bg': '#0f172a',
+        'admin-surface': 'rgba(30, 41, 59, 0.7)',
+        'admin-sidebar': '#111827',
       },
       fontFamily: {
         display: ['var(--font-inter)', 'sans-serif'],

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { useLocale } from '../i18n/LocaleContext';
 import { LocaleToggle } from '../i18n/LocaleToggle';
 import { useAuth } from '@/contexts/AuthContext';
@@ -10,6 +11,12 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useLocale();
   const { user, loading } = useAuth();
+  const pathname = usePathname();
+
+  // Hide header on admin pages and auth pages (login/register)
+  if (pathname.startsWith('/admin') || pathname === '/login' || pathname === '/register') {
+    return null;
+  }
 
   return (
     <header className="absolute top-0 z-50 w-full bg-transparent border-b border-white/10">
@@ -48,7 +55,7 @@ export function Header() {
             <LocaleToggle />
             {!loading && user ? (
               <Link
-                href="/account/dashboard"
+                href={user.role === 'ADMIN' ? '/admin' : '/account/dashboard'}
                 className="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-black bg-fresh-mint hover:bg-white hover:shadow-glow-mint rounded-lg transition-all duration-300"
               >
                 <span className="material-symbols-outlined text-[18px]">person</span>
@@ -100,7 +107,7 @@ export function Header() {
             <LocaleToggle />
             {!loading && user ? (
               <Link
-                href="/account/dashboard"
+                href={user.role === 'ADMIN' ? '/admin' : '/account/dashboard'}
                 className="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-black bg-fresh-mint hover:bg-white rounded-lg transition-all duration-300 text-center"
                 onClick={() => setMobileOpen(false)}
               >

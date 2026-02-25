@@ -1,76 +1,55 @@
+/**
+ * Thin facade that delegates to server actions.
+ * Existing page imports continue to work without changes.
+ */
+
+import {
+  login,
+  register,
+  logout,
+  refreshSession,
+  getMe,
+} from '@/app/actions/auth';
+import {
+  createBooking as createBookingAction,
+  getBooking as getBookingAction,
+  checkoutBooking as checkoutBookingAction,
+  getMyBookings,
+} from '@/app/actions/bookings';
+import { getAvailableSpots as getAvailableSpotsAction } from '@/app/actions/spots';
 import type {
-  AuthResponse,
   BookingResponse,
+  BookingStatus,
   CreateBookingDto,
   LoginDto,
   PaginatedResponse,
-  ApiSuccessResponse,
   ParkingSpotResponse,
-  BookingStatus,
   RegisterDto,
   UserResponse,
 } from '@youness-garage/shared';
 
-const API_BASE = process.env['NEXT_PUBLIC_API_URL'] ?? 'http://localhost:4000';
-
-async function apiFetch<T>(
-  path: string,
-  init?: RequestInit,
-): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json', ...init?.headers },
-    ...init,
-  });
-
-  if (!res.ok) {
-    const body = await res.json().catch(() => null);
-    throw new Error(
-      body?.message ?? `API error ${res.status}`,
-    );
-  }
-
-  return res.json() as Promise<T>;
-}
-
 // ── Auth ──────────────────────────────────────────
 
 export async function apiRegister(dto: RegisterDto): Promise<UserResponse> {
-  const res = await apiFetch<ApiSuccessResponse<AuthResponse>>(
-    '/api/auth/register',
-    { method: 'POST', body: JSON.stringify(dto) },
-  );
-  return res.data.user;
+  return register(dto);
 }
 
 export async function apiLogin(dto: LoginDto): Promise<UserResponse> {
-  const res = await apiFetch<ApiSuccessResponse<AuthResponse>>(
-    '/api/auth/login',
-    { method: 'POST', body: JSON.stringify(dto) },
-  );
-  return res.data.user;
+  return login(dto);
 }
 
 export async function apiRefresh(): Promise<UserResponse> {
-  const res = await apiFetch<ApiSuccessResponse<AuthResponse>>(
-    '/api/auth/refresh',
-    { method: 'POST' },
-  );
-  return res.data.user;
+  return refreshSession();
 }
 
 export async function apiLogout(): Promise<void> {
-  await apiFetch<ApiSuccessResponse<{ message: string }>>(
-    '/api/auth/logout',
-    { method: 'POST' },
-  );
+  return logout();
 }
 
 export async function apiGetMe(): Promise<UserResponse> {
-  const res = await apiFetch<ApiSuccessResponse<AuthResponse>>(
-    '/api/auth/me',
-  );
-  return res.data.user;
+  const user = await getMe();
+  if (!user) throw new Error('Not authenticated');
+  return user;
 }
 
 // ── Spots ─────────────────────────────────────────
@@ -80,12 +59,7 @@ export async function getAvailableSpots(
   checkOut: string,
   type?: string,
 ): Promise<ParkingSpotResponse[]> {
-  const params = new URLSearchParams({ checkIn, checkOut });
-  if (type) params.set('type', type);
-  const res = await apiFetch<ApiSuccessResponse<ParkingSpotResponse[]>>(
-    `/api/spots/available?${params}`,
-  );
-  return res.data;
+  return getAvailableSpotsAction(checkIn, checkOut, type);
 }
 
 // ── Bookings ──────────────────────────────────────
@@ -93,26 +67,17 @@ export async function getAvailableSpots(
 export async function createBooking(
   dto: CreateBookingDto,
 ): Promise<BookingResponse> {
-  const res = await apiFetch<ApiSuccessResponse<BookingResponse>>(
-    '/api/bookings',
-    { method: 'POST', body: JSON.stringify(dto) },
-  );
-  return res.data;
+  return createBookingAction(dto);
 }
 
 export async function getBooking(id: string): Promise<BookingResponse> {
-  const res = await apiFetch<ApiSuccessResponse<BookingResponse>>(
-    `/api/bookings/${id}`,
-  );
-  return res.data;
+  const booking = await getBookingAction(id);
+  if (!booking) throw new Error('Booking not found');
+  return booking;
 }
 
 export async function checkoutBooking(id: string): Promise<BookingResponse> {
-  const res = await apiFetch<ApiSuccessResponse<BookingResponse>>(
-    `/api/bookings/${id}/checkout`,
-    { method: 'POST' },
-  );
-  return res.data;
+  return checkoutBookingAction(id);
 }
 
 export async function getBookings(params?: {
@@ -122,14 +87,5 @@ export async function getBookings(params?: {
   from?: string;
   to?: string;
 }): Promise<PaginatedResponse<BookingResponse>> {
-  const sp = new URLSearchParams();
-  if (params?.page) sp.set('page', String(params.page));
-  if (params?.limit) sp.set('limit', String(params.limit));
-  if (params?.status) sp.set('status', params.status);
-  if (params?.from) sp.set('from', params.from);
-  if (params?.to) sp.set('to', params.to);
-  const qs = sp.toString();
-  return apiFetch<PaginatedResponse<BookingResponse>>(
-    `/api/bookings${qs ? `?${qs}` : ''}`,
-  );
+  return getMyBookings(params);
 }
