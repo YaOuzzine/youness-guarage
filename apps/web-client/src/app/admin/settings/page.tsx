@@ -240,8 +240,10 @@ export default function SettingsPage() {
               </span>
               <input
                 className={`${inputCls} pl-7`}
-                type="text"
-                value={settings.pricingHourly.toFixed(2)}
+                type="number"
+                step="0.01"
+                min="0"
+                value={settings.pricingHourly}
                 onChange={(e) => update('pricingHourly', Number(e.target.value) || 0)}
               />
             </div>
@@ -256,8 +258,10 @@ export default function SettingsPage() {
               </span>
               <input
                 className={`${inputCls} pl-7`}
-                type="text"
-                value={settings.pricingDailyMax.toFixed(2)}
+                type="number"
+                step="0.01"
+                min="0"
+                value={settings.pricingDailyMax}
                 onChange={(e) => update('pricingDailyMax', Number(e.target.value) || 0)}
               />
             </div>
@@ -272,8 +276,10 @@ export default function SettingsPage() {
               </span>
               <input
                 className={`${inputCls} pl-7`}
-                type="text"
-                value={settings.pricingOvernightSurcharge.toFixed(2)}
+                type="number"
+                step="0.01"
+                min="0"
+                value={settings.pricingOvernightSurcharge}
                 onChange={(e) => update('pricingOvernightSurcharge', Number(e.target.value) || 0)}
               />
             </div>
@@ -288,8 +294,10 @@ export default function SettingsPage() {
               </span>
               <input
                 className={`${inputCls} pl-7`}
-                type="text"
-                value={settings.pricingLostTicketFee.toFixed(2)}
+                type="number"
+                step="0.01"
+                min="0"
+                value={settings.pricingLostTicketFee}
                 onChange={(e) => update('pricingLostTicketFee', Number(e.target.value) || 0)}
               />
             </div>

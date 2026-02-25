@@ -2,7 +2,9 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
+  useMemo,
   useState,
   useEffect,
   type ReactNode,
@@ -43,16 +45,19 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = detected;
   }, []);
 
-  function setLocale(next: Locale) {
+  const setLocale = useCallback((next: Locale) => {
     setLocaleState(next);
     localStorage.setItem(STORAGE_KEY, next);
     document.documentElement.lang = next;
-  }
+  }, []);
+
+  const value = useMemo(
+    () => ({ locale, setLocale, t: dictionaries[locale] }),
+    [locale, setLocale],
+  );
 
   return (
-    <LocaleContext.Provider
-      value={{ locale, setLocale, t: dictionaries[locale] }}
-    >
+    <LocaleContext.Provider value={value}>
       {children}
     </LocaleContext.Provider>
   );
