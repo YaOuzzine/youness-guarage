@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole } from '@youness-garage/shared';
@@ -8,24 +8,16 @@ import { AdminSidebar } from './Sidebar';
 import { AdminTopBar } from './TopBar';
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
   const router = useRouter();
   const { user, loading } = useAuth();
-  const isLoginPage = pathname === '/admin/login';
-
   useEffect(() => {
     if (loading) return;
-    if (!user && !isLoginPage) {
-      router.replace('/admin/login');
-    }
-    if (user && user.role !== UserRole.ADMIN && !isLoginPage) {
+    if (!user) {
+      router.replace('/login');
+    } else if (user.role !== UserRole.ADMIN) {
       router.replace('/account/dashboard');
     }
-  }, [loading, user, isLoginPage, router]);
-
-  if (isLoginPage) {
-    return <>{children}</>;
-  }
+  }, [loading, user, router]);
 
   if (loading) {
     return (

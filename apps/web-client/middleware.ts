@@ -19,29 +19,18 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const accessToken = request.cookies.get('access_token')?.value;
 
-  // Admin routes (except /admin/login) — require ADMIN role
-  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+  // Admin routes — require ADMIN role
+  if (pathname.startsWith('/admin')) {
     if (!accessToken) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      return NextResponse.redirect(new URL('/login', request.url));
     }
     const payload = await verifyToken(accessToken);
     if (!payload) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      return NextResponse.redirect(new URL('/login', request.url));
     }
     // Non-admin users cannot access admin pages
     if (payload.role !== 'ADMIN') {
       return NextResponse.redirect(new URL('/account/dashboard', request.url));
-    }
-    return NextResponse.next();
-  }
-
-  // Admin login page — if already logged in as admin, go to dashboard
-  if (pathname === '/admin/login') {
-    if (accessToken) {
-      const payload = await verifyToken(accessToken);
-      if (payload?.role === 'ADMIN') {
-        return NextResponse.redirect(new URL('/admin', request.url));
-      }
     }
     return NextResponse.next();
   }
